@@ -2,19 +2,24 @@ import axios from "axios";
 
 /**
  * Axios client configured for the Notes API.
- * It reads base URL from REACT_APP_API_BASE with a safe fallback to http://localhost:3001.
- * Includes basic request/response interceptors for logging and error handling.
+ * Reads base origin from REACT_APP_API_BASE with a safe fallback to http://localhost:3001.
+ * All requests are made under the /api namespace to match FastAPI routes.
+ * Example final URLs:
+ *  - GET  {BASE_ORIGIN}/api/notes
+ *  - POST {BASE_ORIGIN}/api/notes
+ *  - PUT  {BASE_ORIGIN}/api/notes/{id}
+ *  - DEL  {BASE_ORIGIN}/api/notes/{id}
  */
 
-// Resolve base URL from env with fallback
-const API_BASE =
+// Resolve base origin from env with fallback
+const API_ORIGIN =
   process.env.REACT_APP_API_BASE && process.env.REACT_APP_API_BASE.trim().length > 0
     ? process.env.REACT_APP_API_BASE.trim()
     : "http://localhost:3001";
 
-// Create axios instance
+// Create axios instance with /api prefix to align with backend openapi
 const api = axios.create({
-  baseURL: API_BASE,
+  baseURL: `${API_ORIGIN}/api`,
   headers: {
     "Content-Type": "application/json",
   },
@@ -45,8 +50,8 @@ api.interceptors.response.use(
 
 // PUBLIC_INTERFACE
 export function getApiBaseUrl() {
-  /** Returns the effective API base URL in use by the axios client. */
-  return API_BASE;
+  /** Returns the effective API base origin in use by the axios client. */
+  return API_ORIGIN;
 }
 
 export default api;

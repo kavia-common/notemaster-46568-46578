@@ -2,12 +2,13 @@ import api from "../api/client";
 
 /**
  * Notes service provides CRUD operations for notes.
- * Expected backend routes (typical FastAPI CRUD):
- * - GET /notes -> list
- * - POST /notes -> create  { title, content }
- * - GET /notes/{id} -> retrieve
- * - PUT /notes/{id} -> update { title, content }
- * - DELETE /notes/{id} -> delete
+ * Backend routes are under /api; the axios client already prefixes /api in baseURL.
+ * Effective endpoints:
+ * - GET  /notes
+ * - POST /notes
+ * - GET  /notes/{id}
+ * - PUT  /notes/{id}
+ * - DEL  /notes/{id}
  */
 
 // PUBLIC_INTERFACE

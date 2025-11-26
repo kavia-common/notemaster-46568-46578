@@ -18,6 +18,16 @@ In the project directory, you can run:
 Runs the app in development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+### Configure API base
+
+The frontend calls the FastAPI backend via an environment variable:
+
+- Set REACT_APP_API_BASE in `.env` (defaults to `http://localhost:3001`):
+  ```
+  REACT_APP_API_BASE=http://localhost:3001
+  ```
+- All requests are sent under `/api` (e.g., `http://localhost:3001/api/notes`).
+
 ### `npm test`
 
 Launches the test runner in interactive watch mode.
